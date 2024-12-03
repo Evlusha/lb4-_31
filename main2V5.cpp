@@ -26,14 +26,14 @@ mutex mtx;
 
 // Функция для вычисления средней успеваемости студентами в однопоточном режиме
 double calculateAverageSingleThread(const vector<Student>& students, const string& group, int semester) {
-    double sumGrades = 0.0;
-    int count = 0;
-    for (const auto& student : students) {
-        if (student.groupNumber == group) {
+    double sumGrades = 0.0; // Сумма оценок
+    int count = 0; //Количество оценок
+    for (const auto& student : students) { //Прохожусь по всем студентам
+        if (student.groupNumber == group) { // проверка на принадлежность студента к определенной группе
             for (const auto& result : student.results) {
-                if (result.semester == semester) {
-                    sumGrades += result.grade;
-                    count++;
+                if (result.semester == semester) {///Проверяем соответствует ли семестр для текущего результата запрашиваемому семестру
+                    sumGrades += result.grade;//
+                    count++;//
                 }
             }
         }
@@ -64,8 +64,8 @@ void calculateAverageForPart(const vector<Student>& students, const string& grou
 
 // Функция для генерации случайных данных
 Student generateRandomStudent(int studentId) {
-    static const vector<string> names = {"Alice", "Bob", "Charlie", "David", "Eve"};
-    static const vector<string> subjects = {"Math", "Physics", "Chemistry", "Biology", "History"};
+    static const vector<string> names = {"Алиса", "Дима", "Илья", "Карась", "Васек"};
+    static const vector<string> subjects = {"Матан", "Философия", "Геометрия", "Биология", "История"};
     static string groupName = "G1";
     static mt19937 rng(random_device{}());
     uniform_int_distribution<> gradeDist(2, 5);
